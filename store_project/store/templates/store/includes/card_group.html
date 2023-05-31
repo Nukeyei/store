@@ -1,0 +1,21 @@
+{% for products in product_list %}
+<div class="card-group">
+    {% for product in products %}
+    <div class="card">
+        <a href="{{ product.get_absolute_url }}">
+            {% include "store/includes/img.html" %}
+        </a>
+        <div class="card-body">
+            <h5 class="card-title">{{ product.title }}</h5>
+            <p class="card-text">{{ product.info|truncatewords:10 }}</p>
+            <p class="card-text">Price: {{ product.price }}</p>
+            <ul class="list-group list-group-horizontal">
+                {% for category in product.categories.all %}
+                <li class="list-group-item"><a href="{{ category.get_absolute_url }}"> {{ category.title }} </a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endfor %}

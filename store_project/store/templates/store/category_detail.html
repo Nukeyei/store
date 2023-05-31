@@ -1,0 +1,8 @@
+{% extends "store/index.html" %}
+{% block title %}
+{{ category.title }}
+{% endblock title %}
+{% block content %}
+<h1>Товары с категорией "{{ category.title }}"</h1>
+{% include "store/includes/card_group.html" %}
+{% endblock content %}

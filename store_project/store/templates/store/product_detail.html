@@ -1,0 +1,51 @@
+{% extends "store/index.html" %}
+{% block title %}
+{{ product.title }}
+{% endblock title %}
+{% block content %}
+<div class="card">
+    {% include "store/includes/img.html" %}
+    <div class="card-body">
+        <h5 class="card-title">{{ product.title }}</h5>
+        <p class="card-text">{{ product.info }}</p>
+        <p class="card-text">Price: {{ product.price }}</p>
+        <ul class="list-group list-group-horizontal">
+            {% for category in product.categories.all %}
+            <li class="list-group-item"><a href="{{ category.get_absolute_url }}"> {{ category.title }} </a></li>
+            {% endfor %}
+        </ul>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Buy now!
+        </button>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Product title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3" role="search" action="https://getbootstrap.com/" method="get">
+                        <label for="user_name" class="form-label">Your name</label>
+                        <input type="text" class="form-control" id="user_name" required name="user_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="user_email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="user_email" aria-describedby="emailHelp" required
+                            name="user_email">
+                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
