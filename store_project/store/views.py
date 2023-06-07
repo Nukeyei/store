@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Product, Category
+from .models import Product, Category, Order
 
 
 def build_template(lst: list, cols: int) -> list:
@@ -40,3 +40,12 @@ def category_detail(request, pk):
         "store/category_detail.html",
         context={"product_list": build_template(products, 3), "categories": categories, "category": category},
     )
+
+def save_order(request):
+    categories = Category.objects.all()
+    order= Order()
+    order.name= request.POST['user_name']
+    order.email= request.POST['user_email']
+    order.product= Product.objects.get(pk=request.POST['product_id'])
+    order.save()
+    return render(request,'store/order.html', context={"categories": categories, "order": order})
