@@ -34,4 +34,4 @@ python manage.py migrate
 #Регистрация пользователя 
 python manage.py createsuperuser
 
-#
+#https://nukli.pythonanywhere.com/
